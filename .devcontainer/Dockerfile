@@ -26,3 +26,4 @@ RUN git clone https://github.com/luckyframework/lucky_cli && \
 
 # Environment
 ENV PS1="\[\]\w\$ \[\]"
+ENV LANG="C.UTF-8"
