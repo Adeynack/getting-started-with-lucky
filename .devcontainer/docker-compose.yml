@@ -1,6 +1,6 @@
 version: '3'
 
-name: finances
+name: getting-started-with-lucky
 
 services:
   devcontainer:
@@ -8,7 +8,7 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - 30001
+      - 30401
     volumes:
       - ../..:/workspaces:cached
     command: sleep infinity
@@ -18,7 +18,7 @@ services:
     image: postgres:16.2
     restart: unless-stopped
     ports:
-      - 30002:5432
+      - 30402:5432
     volumes:
       - ../tmp/postgres-data:/var/lib/postgresql/data
     environment:

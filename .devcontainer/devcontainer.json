@@ -28,7 +28,8 @@
 				"netcorext.uuid-generator",
 				"redhat.vscode-yaml",
 				"ms-azuretools.vscode-docker",
-				"crystal-lang-tools.crystal-lang"
+				"crystal-lang-tools.crystal-lang",
+				"stephendolan.lucky"
 			]
 		}
 	}
