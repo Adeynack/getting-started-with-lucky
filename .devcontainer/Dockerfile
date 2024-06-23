@@ -15,7 +15,7 @@ RUN apt -y install --no-install-recommends tmux curl unzip
 # Install PostgreSQL libs & tools
 RUN apt -y install --no-install-recommends postgresql-client pspg libpq-dev
 ENV PGHOST=127.0.0.1
-ENV PGPORT=30002
+ENV PGPORT=30402
 ENV PGUSER=postgres
 ENV PAGER=pspg
 
