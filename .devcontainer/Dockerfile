@@ -1,4 +1,5 @@
-FROM crystallang/crystal:1.12
+# FROM crystallang/crystal:1.12
+FROM ubuntu:24.04
 
 SHELL ["/bin/bash", "--login", "-c"]
 
@@ -13,21 +14,29 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt update && apt -y upgrade
 RUN apt -y install --no-install-recommends tmux curl unzip
 
 # Install PostgreSQL libs & tools
-RUN apt -y install --no-install-recommends postgresql-client pspg libpq-dev
+RUN apt -y install --no-install-recommends postgresql-client pspg libpq-dev git ca-certificates gpg
 ENV PGHOST=127.0.0.1
 ENV PGPORT=30002
 ENV PGUSER=postgres
 ENV PAGER=pspg
 
+# Install Crystal
+RUN curl -fsSL https://packagecloud.io/84codes/crystal/gpgkey | gpg --dearmor | tee /etc/apt/trusted.gpg.d/84codes_crystal.gpg > /dev/null && \
+    echo "deb https://packagecloud.io/84codes/crystal/any any main" | tee /etc/apt/sources.list.d/84codes_crystal.list && \
+    apt update && \
+    apt install -y crystal && \
+    which crystal
+
 # Install `Lucky` (CLI for the framework)
-RUN git clone https://github.com/luckyframework/lucky_cli && \
+RUN apt install -y libc6-dev libevent-dev libpcre2-dev libpcre3-dev libpng-dev libssl-dev libyaml-dev zlib1g-dev && \
+    git clone https://github.com/luckyframework/lucky_cli && \
     cd lucky_cli && \
     git checkout v1.2.0 && \
     shards install --without-development && \
     shards build --production && \
     cp bin/lucky /usr/local/bin && \
     cd .. && \
-    rm -rf lucki_cli && \
+    rm -rf lucky_cli && \
     which lucky
 
 # Install NodeJS & JS/TS tooling
