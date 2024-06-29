@@ -1,5 +1,5 @@
-# FROM crystallang/crystal:1.12
-FROM ubuntu:24.04
+FROM crystallang/crystal:1.12
+# FROM ubuntu:24.04 # if uncommented, uncomment also section "Install Crystal"
 
 SHELL ["/bin/bash", "--login", "-c"]
 
@@ -20,12 +20,12 @@ ENV PGPORT=30402
 ENV PGUSER=postgres
 ENV PAGER=pspg
 
-# Install Crystal
-RUN curl -fsSL https://packagecloud.io/84codes/crystal/gpgkey | gpg --dearmor | tee /etc/apt/trusted.gpg.d/84codes_crystal.gpg > /dev/null && \
-    echo "deb https://packagecloud.io/84codes/crystal/any any main" | tee /etc/apt/sources.list.d/84codes_crystal.list && \
-    apt update && \
-    apt install -y crystal && \
-    which crystal
+# Install Crystal (uncomment if switching back to FROM ubuntu:24.04)
+# RUN curl -fsSL https://packagecloud.io/84codes/crystal/gpgkey | gpg --dearmor | tee /etc/apt/trusted.gpg.d/84codes_crystal.gpg > /dev/null && \
+#     echo "deb https://packagecloud.io/84codes/crystal/any any main" | tee /etc/apt/sources.list.d/84codes_crystal.list && \
+#     apt update && \
+#     apt install -y crystal && \
+#     which crystal
 
 # Install `Lucky` (CLI for the framework)
 RUN apt install -y libc6-dev libevent-dev libpcre2-dev libpcre3-dev libpng-dev libssl-dev libyaml-dev zlib1g-dev && \
