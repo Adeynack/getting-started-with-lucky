@@ -1,6 +1,6 @@
 class Fortunes::Create < BrowserAction
   post "/fortunes" do
-    SaveFortune.create(params) do |operation, fortune|
+    SaveFortune.create(params, user_id: current_user.id) do |operation, fortune|
       if fortune
         flash.success = "The record has been saved"
         redirect Show.with(fortune.id)

@@ -10,3 +10,12 @@ Following the [Lucky Framework Beginner's Tutorial](https://luckyframework.org/g
 lucky gen.resource.browser Fortune text:String
 lucky db.migrate
 ```
+
+### Associating Models
+
+See [here](https://luckyframework.org/guides/tutorial/associations).
+
+```sh
+lucky gen.migration AddBelongsToUserForFortune
+lucky db.migrate
+```
